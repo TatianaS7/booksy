@@ -1,12 +1,12 @@
 # User Model
 
+
 # Import dependencies
 from server import db
 from bcrypt import hashpw, gensalt, checkpw
-import json, bcrypt, os
 
 
-# Define User model
+# Define model
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     full_name = db.Column(db.String(100), nullable=False)
