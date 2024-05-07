@@ -6,6 +6,9 @@ from flask_marshmallow import Marshmallow
 from dotenv import find_dotenv, load_dotenv
 import os, json
 
+# Import Routes
+from routes import user, business
+
 
 # Import Environment Variables
 ENV_FILE = find_dotenv()
