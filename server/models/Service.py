@@ -2,7 +2,7 @@
 
 
 # Import dependencies
-from server import db
+from server.database import db
 
 
 # Define model

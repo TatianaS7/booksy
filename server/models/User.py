@@ -2,7 +2,7 @@
 
 
 # Import dependencies
-from server import db
+from server.database import db
 from bcrypt import hashpw, gensalt, checkpw
 
 
