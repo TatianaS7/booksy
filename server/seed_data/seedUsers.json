@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "full_name": "Emily Echols",
+        "email": "emEchols@gmail.com",
+        "username": "emilyEchols",
+        "phone_number": "1234567890",
+        "password": "password"
+    },
+    {
+        "id": 2,
+        "full_name": "Jane Doe",
+        "email": "janeD@gmail.com",
+        "username": "janeDoe",
+        "phone_number": "3987654321",
+        "password": "password"
+    },
+    {
+        "id": 3,
+        "full_name": "Layla Smith",
+        "email": "lsmith@gmail.com",
+        "username": "laylaSmith",
+        "phone_number": "5551678902",
+        "password": "password"
+    },
+    {
+        "id": 4,
+        "full_name": "Eleanora Leggett",
+        "email": "e.legget@gmail.com",
+        "username": "eleanoraLeggett",
+        "phone_number": "2017221876",
+        "password": "password"
+    }
+]

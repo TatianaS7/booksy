@@ -4,10 +4,6 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from dotenv import find_dotenv, load_dotenv
-import os, json
-
-# Import Routes
-from routes import user, business
 
 
 # Import Environment Variables
@@ -16,22 +12,30 @@ if ENV_FILE:
     load_dotenv(ENV_FILE)
 
 
-
 # Create Instance of Flask App
-app = Flask(__name__)
-CORS(app)
+db = SQLAlchemy()
+ma = Marshmallow()
 
+def create_app():
+    app = Flask(__name__)
+    CORS(app)
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'   
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    db.init_app(app)
+    ma.init_app(app)
+    return app
 
 # Database Setup
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'   
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-ma = Marshmallow(app)
+app = create_app()
 
+# Import Routes
+from server.routes import user, business
 
 # Routes
 app.register_blueprint(user, url_prefix='/user')
-app.register_blueprint(business, url_prefix='/business')
+# app.register_blueprint(business, url_prefix='/business')
 
 
 

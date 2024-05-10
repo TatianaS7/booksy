@@ -1,0 +1,42 @@
+[
+  {
+        "id": 1,
+        "name": "The Braid Bar",
+        "address": "123 Lakeside Way",
+        "city": "Richmond",
+        "state": "VA",
+        "phone_number": "6503600708",
+        "email": "braidbar@gmail.com",
+        "password": "password"
+    },
+    {
+        "id": 2,
+        "name": "Sofia Beauty",
+        "address": "456 Main St",
+        "city": "Baltimore",
+        "state": "MD",
+        "phone_number": "4103600708",
+        "email": "sofia.beauty@gmail.com",
+        "password": "password"
+    },
+    {
+        "id": 3,
+        "name": "The Nail Bar",
+        "address": "789 Elm St",
+        "city": "Washington",
+        "state": "DC",
+        "phone_number": "2023600708",
+        "email": "nailbar@gmail.com",
+        "password": "password"
+    },
+    {
+        "id": 4,
+        "name": "Nails by Jade",
+        "address": "1010 Maple St",
+        "city": "Alexandria",
+        "state": "VA",
+        "phone_number": "7033600708",
+        "email": "nailsbyjade@gmail.com",
+        "password": "password"
+    }
+]

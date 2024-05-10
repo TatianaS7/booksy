@@ -7,6 +7,7 @@ from authlib.integrations.flask_client import OAuth
 from dotenv import find_dotenv, load_dotenv
 from flask import Flask, redirect, render_template, session, url_for
 
+from app import app
 
 # Load Configuration
 ENV_FILE = find_dotenv()
@@ -15,7 +16,6 @@ if ENV_FILE:
 
 
 # Create Instance of Flask App
-app = Flask(__name__)
 app.secret_key = env.get('SECRET_KEY')
 
 
