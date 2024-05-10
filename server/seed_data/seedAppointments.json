@@ -1,0 +1,39 @@
+[
+    {
+        "id": 1,
+        "date": "2024-05-12",
+        "time": "12:00:00",
+        "user_id": 1,
+        "business_id": 4,
+        "service_id": 2,
+        "notes": null
+    },
+    {
+        "id": 2,
+        "date": "2024-05-16",
+        "time": "14:00:00",
+        "user_id": 2,
+        "business_id": 3,
+        "service_id": 5,
+        "notes": null
+    },
+    {
+        "id": 3,
+        "date": "2024-05-20",
+        "time": "10:00:00",
+        "user_id": 3,
+        "business_id": 2,
+        "service_id": 3,
+        "notes": "Warm undertone, chestnut lip look."
+    },
+    {
+        "id": 4,
+        "date": "2024-05-24",
+        "time": "16:00:00",
+        "user_id": 4,
+        "business_id": 1,
+        "service_id": 1,
+        "notes": "Hair is bra length and thick."
+    }
+
+]

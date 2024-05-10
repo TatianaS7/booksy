@@ -1,0 +1,48 @@
+
+[
+    {
+        "id": 1,
+        "name": "Faux Locs",
+        "duration": 300,
+        "price": 100,
+        "description": "Hair and wash/blowdry included; Waist length",
+        "business_id": 1,        
+        "appointments": []
+    },
+    {
+        "id": 2,
+        "name": "Acylic Full Set",
+        "duration": 60,
+        "price": 65,
+        "description": "Medium length; Gel polish; Gems and designs extra",
+        "business_id": 4,        
+        "appointments": []
+    },
+    {
+        "id": 3,
+        "name": "Soft Glam Makeup",
+        "duration": 45,
+        "price": 75,
+        "description": "Full face makeup; Lashes included; No glitter or cut crease",
+        "business_id": 2,        
+        "appointments": []
+    },
+    {
+        "id": 4,
+        "name": "Acylic Full Set",
+        "duration": 90,
+        "price": 90,
+        "description": "Long lenghth; Gel polish; 2 nail designs included",
+        "business_id": 4,        
+        "appointments": []
+    },
+    {
+        "id": 5,
+        "name": "Deluxe Pedicure",
+        "duration": 60,
+        "price": 45,
+        "description": "Foot soak; Callus removal; Lotion massage; Gel polish",
+        "business_id": 3,        
+        "appointments": []
+    }
+]
