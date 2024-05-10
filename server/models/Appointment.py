@@ -1,8 +1,7 @@
 # Appointment Model
 
 # Import dependencies
-from server import db
-from .Appointment import Appointment
+from server.database import db
 
 
 # Define model
