@@ -29,3 +29,19 @@ def get_businesses():
         return jsonify([business.serialize() for business in businesses])
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    
+# Get a Business (by ID)
+@business.route('/<int:business_id>', methods=['GET'])
+def get_business(business_id):
+    try:
+        # Get business by ID
+        business = Business.query.get(business_id)
+
+        # If business is found, return serialized business as JSON
+        if business:
+            return jsonify(business.serialize())
+        # If business is not found, return error
+        return jsonify({'error': 'Business not found'}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
