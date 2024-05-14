@@ -41,7 +41,7 @@ def create_app():
     # Routes
     app.register_blueprint(auth, url_prefix='/auth')
     app.register_blueprint(user, url_prefix='/user')
-    # app.register_blueprint(business, url_prefix='/business')
+    app.register_blueprint(business, url_prefix='/business')
 
     with app.app_context():
         db.create_all()
