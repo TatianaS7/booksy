@@ -81,6 +81,28 @@ def get_services(business_id):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+# Get a Service for a Business (by ID)
+@business.route('/<int:business_id>/service/<int:service_id>', methods=['GET'])
+def get_service(business_id, service_id):
+    try:
+        # Get business by ID
+        business = Business.query.get(business_id)
+
+        # If business is not found, return error
+        if not business:
+            return jsonify({'error': 'Business not found'}), 404
+
+        # Get business service by ID
+        service = Service.query.filter_by(id=service_id, business_id=business_id).first()
+
+        # If service is not found, return error
+        if not service:
+            return jsonify({'error': 'Service not found'}), 404
+
+        # Return serialized service as JSON
+        return jsonify(service.serialize())
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 
 # POST
