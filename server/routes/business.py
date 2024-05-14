@@ -93,4 +93,35 @@ def create_business():
         return jsonify(business.serialize())
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-    
+
+# Create a Service for a Business
+@business.route('/<int:business_id>/service/new', methods=['POST'])  
+def create_service(business_id):
+    try:
+        # Get data from request
+        data = request.json
+
+        # Get business by ID
+        business = Business.query.get(business_id)
+
+        # If business is not found, return error
+        if not business:
+            return jsonify({'error': 'Business not found'}), 404
+
+        # Create a new Service object
+        service = Service(
+            name=data['name'],
+            duration=data['duration'],
+            price=data['price'],
+            description=data['description'],
+            business_id=business_id
+        )
+
+        # Add Service to database
+        db.session.add(service)
+        db.session.commit()
+
+        # Return serialized service as JSON
+        return jsonify(business.serialize())
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
