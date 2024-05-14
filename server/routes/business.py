@@ -241,3 +241,25 @@ def update_service(business_id, service_id):
         return jsonify(service.serialize())
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    
+
+# DELETE
+# Delete a Business
+@business.route('/<int:business_id>', methods=['DELETE'])
+def delete_business(business_id):
+    try:
+        # Get business by ID
+        business = Business.query.get(business_id)
+
+        # If business is not found, return error
+        if not business:
+            return jsonify({'error': 'Business not found'}), 404
+
+        # Delete business
+        db.session.delete(business)
+        db.session.commit()
+
+        # Return success message
+        return jsonify({'message': 'Business deleted'})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
