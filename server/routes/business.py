@@ -65,3 +65,32 @@ def search_businesses():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
     
+
+# POST
+# Create a Business
+@business.route('/new', methods=['POST'])
+def create_business():
+    try:
+        # Get data from request
+        data = request.json
+
+        # Create a new Business object
+        business = Business(
+            name=data['name'],
+            address=data['address'],
+            city=data['city'],
+            state=data['state'],
+            phone_number=data['phone_number'],
+            email=data['email'],
+            password=data['password']
+        )
+
+        # Add Business to database
+        db.session.add(business)
+        db.session.commit()
+
+        # Return serialized business as JSON
+        return jsonify(business.serialize())
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
