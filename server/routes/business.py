@@ -45,3 +45,23 @@ def get_business(business_id):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
     
+# Search Businesses (by Name, City, State, or Service)
+@business.route('/search', methods=['GET'])
+def search_businesses():
+    try:
+        # Get search query from request args
+        query = request.args.get('query')
+
+        # Search businesses
+        businesses = Business.query.filter(
+            (Business.name.ilike(f'%{query}%')) |
+            (Business.city.ilike(f'%{query}%')) |
+            (Business.state.ilike(f'%{query}%')) |
+            (Business.services.any(Service.name.ilike(f'%{query}%')))
+        ).all()
+
+        # Return serialized businesses as JSON
+        return jsonify([business.serialize() for business in businesses])
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
