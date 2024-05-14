@@ -254,12 +254,53 @@ def delete_business(business_id):
         # If business is not found, return error
         if not business:
             return jsonify({'error': 'Business not found'}), 404
+        
+        # Get all appointments for business
+        appointments = Appointment.query.filter_by(business_id=business_id).all()
 
+        # Delete all appointments for business
+        for appointment in appointments:
+            db.session.delete(appointment)
+        
         # Delete business
         db.session.delete(business)
         db.session.commit()
 
         # Return success message
         return jsonify({'message': 'Business deleted'})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+# Delete a Service for a Business
+@business.route('/<int:business_id>/service/<int:service_id>', methods=['DELETE'])
+def delete_service(business_id, service_id):
+    try:
+        # Get business by ID
+        business = Business.query.get(business_id)
+
+        # If business is not found, return error
+        if not business:
+            return jsonify({'error': 'Business not found'}), 404
+        
+        # Get business service by ID
+        service = Service.query.filter_by(id=service_id, business_id=business_id).first()
+
+        # If service is not found, return error
+        if not service:
+            return jsonify({'error': 'Service not found'}), 404
+        
+        # Get all appointments for business service
+        appointments = Appointment.query.filter_by(service_id=service_id, business_id=business_id).all()
+
+        # Delete all appointments for business service
+        for appointment in appointments:
+            db.session.delete(appointment)
+
+        # Delete service
+        db.session.delete(service)
+        db.session.commit()
+
+        # Return success message
+        return jsonify({'message': 'Service deleted'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
