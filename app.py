@@ -36,9 +36,10 @@ def create_app():
     ma.init_app(app)
 
     # Import Routes
-    from server.routes import user, business
+    from server.routes import user, business, auth
 
     # Routes
+    app.register_blueprint(auth, url_prefix='/auth')
     app.register_blueprint(user, url_prefix='/user')
     # app.register_blueprint(business, url_prefix='/business')
 
