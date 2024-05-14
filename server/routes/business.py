@@ -164,3 +164,41 @@ def create_service(business_id):
         return jsonify(business.serialize())
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    
+
+# PUT
+# Update a Business
+@business.route('/<int:business_id>/update', methods=['PUT'])
+def update_business(business_id):
+    try:
+        # Get data from request
+        data = request.json
+
+        # Get business by ID
+        business = Business.query.get(business_id)
+
+        # If business is not found, return error
+        if not business:
+            return jsonify({'error': 'Business not found'}), 404
+
+        # Update business attributes
+        if 'name' in data:
+            business.name = data['name']
+        if 'address' in data:
+            business.address = data['address']
+        if 'city' in data:
+            business.city = data['city']
+        if 'state' in data:
+            business.state = data['state']
+        if 'phone_number' in data:
+            business.phone_number = data['phone_number']
+        if 'email' in data:
+            business.email = data['email']
+
+        # Commit changes to database
+        db.session.commit()
+
+        # Return serialized business as JSON
+        return jsonify(business.serialize())
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
