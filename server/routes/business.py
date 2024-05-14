@@ -202,3 +202,42 @@ def update_business(business_id):
         return jsonify(business.serialize())
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    
+# Update a Service for a Business
+@business.route('/<int:business_id>/service/<int:service_id>/update', methods=['PUT'])
+def update_service(business_id, service_id):
+    try:
+        # Get data from request
+        data = request.json
+
+        # Get business by ID
+        business = Business.query.get(business_id)
+
+        # If business is not found, return error
+        if not business:
+            return jsonify({'error': 'Business not found'}), 404
+        
+        # Get business service by ID
+        service = Service.query.filter_by(id=service_id, business_id=business_id).first()
+
+        # If service is not found, return error
+        if not service:
+            return jsonify({'error': 'Service not found'}), 404
+        
+        # Update service attributes
+        if 'name' in data:
+            service.name = data['name']
+        if 'duration' in data:
+            service.duration = data['duration']
+        if 'price' in data:
+            service.price = data['price']
+        if 'description' in data:
+            service.description = data['description']
+
+        # Commit changes to database
+        db.session.commit()
+
+        # Return serialized service as JSON
+        return jsonify(service.serialize())
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
