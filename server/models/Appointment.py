@@ -4,19 +4,35 @@
 from server.database import db
 from datetime import time
 
+# Import Enum class from the enum module
+from enum import Enum
+
+# Import AppointmentStatus Enum to avoid circular import
+from . import AppointmentStatus
+
 
 # Define model
 class Appointment(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.Date, nullable=False)
-    time = db.Column(db.Time, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-        # User ID is a foreign key to the User model
-    business_id = db.Column(db.Integer, db.ForeignKey('business.id'), nullable=False)
-        # Business ID is a foreign key to the Business model
-    service_id = db.Column(db.Integer, db.ForeignKey('service.id'), nullable=False)
-        # Service ID is a foreign key to the Service model
-    notes = db.Column(db.String(200), nullable=True)
+    # Define status options using Enum
+    class AppointmentStatus(Enum):
+        PENDING_CONFIRMATION = 'Pending Confirmation'
+        CONFIRMED = 'Confirmed'
+        CANCELLED = 'Cancelled'
+        COMPLETED = 'Completed'
+
+    # Define the Appointment model
+    class Appointment(db.Model):
+        id = db.Column(db.Integer, primary_key=True)
+        date = db.Column(db.Date, nullable=False)
+        time = db.Column(db.Time, nullable=False)
+
+        # Define status options using Enum
+        status = db.Column(db.Enum(AppointmentStatus), nullable=False, default=AppointmentStatus.PENDING_CONFIRMATION)
+
+        user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+        business_id = db.Column(db.Integer, db.ForeignKey('business.id'), nullable=False)
+        service_id = db.Column(db.Integer, db.ForeignKey('service.id'), nullable=False)
+        notes = db.Column(db.String(200), nullable=True)
 
 
     # Define methods
@@ -24,6 +40,7 @@ class Appointment(db.Model):
     def __init__(self, date, time, user_id, business_id, service_id, notes):
         self.date = date
         self.time = time
+        self.status = AppointmentStatus.PENDING_CONFIRMATION
         self.user_id = user_id
         self.business_id = business_id
         self.service_id = service_id
@@ -37,6 +54,7 @@ class Appointment(db.Model):
             'date': self.date.strftime('%a, %d %b %Y') if self.date else None,
             # Convert time to string if it is a time object and remove milliseconds
             'time': self.time.strftime('%H:%M') if isinstance(self.time, time) else self.time,
+            'status': self.status,
             'user_id': self.user_id,
             'business_id': self.business_id,
             'service_id': self.service_id,
