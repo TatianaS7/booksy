@@ -2,6 +2,7 @@
 
 # Import dependencies
 from server.database import db
+from datetime import time
 
 
 # Define model
@@ -32,8 +33,10 @@ class Appointment(db.Model):
     def serialize(self):
         return {
             'id': self.id,
-            'date': self.date,
-            'time': self.time,
+            # Convert date to string if it is a date object and remove time information
+            'date': self.date.strftime('%a, %d %b %Y') if self.date else None,
+            # Convert time to string if it is a time object and remove milliseconds
+            'time': self.time.strftime('%H:%M') if isinstance(self.time, time) else self.time,
             'user_id': self.user_id,
             'business_id': self.business_id,
             'service_id': self.service_id,

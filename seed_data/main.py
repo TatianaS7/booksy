@@ -1,13 +1,18 @@
 # Write function to seed data from JSON files in server/seed_data
-import datetime
+from datetime import time, datetime
 from server.models import User, Appointment, Service, Business
 import json
 import bcrypt
 from server.database import db
 
-
 def seedData():
     try:
+        # Clear all tables
+        db.session.query(User).delete()
+        db.session.query(Appointment).delete()
+        db.session.query(Service).delete()
+        db.session.query(Business).delete()
+
         # Open User JSON file
         with open('seed_data/seedUsers.json') as f:
             users = json.load(f)
@@ -57,9 +62,17 @@ def seedData():
         with open('seed_data/seedAppointments.json') as f:
             appointments = json.load(f)
             for appointment in appointments:
+                # Convert date string to date object - Python objects are not JSON serializable
                 date_str = appointment['date']
-                date_obj = datetime.strptime(date_str, '%Y-%m-%d')
+                date_obj = datetime.strptime(date_str, '%Y-%m-%d').date()
                 appointment['date'] = date_obj
+
+                # Convert time string to time object - Python objects are not JSON serializable
+                time_str = appointment['time']
+                # Remove milliseconds from time string
+                time_obj = datetime.strptime(time_str[:-3], '%H:%M').time()
+                appointment['time'] = time_obj
+
                 new_appointment = Appointment(
                     date=appointment['date'],
                     time=appointment['time'],
