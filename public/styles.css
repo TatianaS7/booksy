@@ -1,0 +1,74 @@
+/* * * {
+  border: red dashed 1pt;
+} */
+
+main {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    padding-bottom: 1.5em;
+    padding-top: 1.5em;
+    border-bottom: rgb(206, 105, 206) solid 1px;
+}
+
+.logo {
+    font-size: 30px;
+    color: black;
+    font-weight: 800;
+}
+
+.logo:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.directory {
+    color: black;
+    font-weight: 600;
+}
+
+.directory:hover {
+    color: black;
+    text-decoration: none;
+    border-bottom: rgb(206, 105, 206) solid 1.5px;
+}
+
+
+.content {
+    margin: 4em;
+}
+
+.greeting {
+    font-weight: 700;
+    font-size: 3em;
+    color: black;
+    text-transform: uppercase;
+}
+
+span {
+    color: rgb(206, 105, 206);
+    border-bottom: black dotted 3pt;
+    /* color: black; */
+}
+
+.description {
+    margin-top: 1em;
+    font-size: 20px;
+    font-weight: 400;
+    max-width: 75vw;
+}
+
+#get-started {
+    background-color: rgb(206, 105, 206);
+    color: white;
+    border: none;
+    font-size: 1.5em;
+    width: 8em;
+}
+
+#get-started:hover {
+    background-color: rgb(174, 88, 174);
+}

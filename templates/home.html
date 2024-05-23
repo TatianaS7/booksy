@@ -1,0 +1,47 @@
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+
+    <!-- Bootstrap Styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <!-- My Styles -->
+    <link rel="stylesheet" href="../public/styles.css">
+
+    <title>Booksy | Appointment Scheduling</title>
+  </head>
+
+  <body>
+    <!-- If User is Signed In -->
+    {% if session %}
+    <div class="navbar">
+      <a href="/" class="logo">Booksy</a>
+      <a href="/logout" class="btn btn-outline-dark">Logout</a>
+    </div>
+
+    <div class="content">
+      <h1 class="greeting">Welcome {{session.userinfo.name}}!</h1>
+      <div>
+        <pre>{{pretty}}</pre>
+      </div>
+    </div>
+
+    <!-- If User is not Signed In -->
+    {% else %}
+    <div class="navbar">
+      <a href="/" class="logo">Booksy</a>
+      <a href="/" class="directory">Explore</a>
+    </div>
+
+    <div class="content">
+      <h1 class="greeting">Appointments<br/>Made <span>Easy</span>!</h1>
+      <p class="description">Sign up today to start scheduling appointments with your favorite service providers!</p><br/>
+      <a href="/login" class="btn btn-primary" id="get-started">Get Started</a>
+    </div>
+    {% endif %}
+  </body>
+
+</html>
